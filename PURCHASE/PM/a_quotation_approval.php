@@ -1,0 +1,9 @@
+<?php
+include('../../security.php');
+include('../../includes/header.php'); 
+include('../../includes/purchase_navbar.php'); 
+?>
+<?php
+include('../../includes/scripts.php');
+include('../../includes/footer.php');
+?>

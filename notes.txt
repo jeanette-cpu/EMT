@@ -1,0 +1,338 @@
+
+error_reporting(0);
+
+-update live to save ZERO
+-update building type mulitiple entry
+-material used per activity (ajax? ajax_act_record.php)
+
+PURCHASE MGR-USER
+INSERT INTO notification (User_Id,Not_Type,Not_Status,Comp_Id) VALUES('$u_id','new_reg',1,'$id')
+  -new register (new_reg) /
+    Comp1 company new register
+    Comp1 and Comp2 newly registered
+    Comp1, Comp2, and (1 or 5) others new company register
+  -new application quote (new_quote)
+  //select all purchase type
+INSERT INTO notification (User_Id,Not_Type,Not_Status,Comp_Id) VALUES (User_Id,'new_quote',1,Comp_Id) 
+    Comp1 send a quote for [Project Name (materials/subcon/laborsupply)] 
+    Comp1 and Comp2 send quote for [Project Name (materials/subcon/laborsupply)] 
+    Comp1, Comp2, and (1 or 5) end quote for [Project Name (materials/subcon/laborsupply)] 
+
+COMPANY-user
+//select all company id base on post_type
+INSERT INTO notification (User_Id,Not_Type,Not_Status,Comp_Id) VALUES (User_Id,'new_quote',1,Post_Id) 
+  -company post (material, subcontractor/labor supply) (new_post)
+  [Project Name] recently post material requisition 
+  [Project Name] recenty post: Subcontractor/Labor Supply [] in need
+INSERT INTO notification (User_Id,Not_Type,Not_Status,Comp_Id) VALUES (User_Id,'new_post',1,Quote_Id) 
+  -quotation approve (quote_approved)
+  [quoatation name/type] for [Project Name] was approved
+  [quoatation name/type] for [Project Name] was denied
+
+1. notif message for company user
+2. remove stat=1 status on notifications /
+  //get user_id 
+  javascript remove number at the top
+  jquery to remove the status
+3. still display the most recent notif limit 5 /
+
+company type multiple
+company user notification, no user id filter notif
+
+reqcuitment agency 
+available in UPDATE
+years of experience
+passpord
+namepasspwrd no
+Uae
+gulf
+rejected, 
+for interview approved
+
+2 ISO 
+MINISTRY OF PUBLIC WORKS DUBAI
+MINISTRY OF WORKS SHARJAH
+
+// display for all notifications
+// edit post (manpower, subcon, material)
+// check code for purchase users
+ - group by type on all notifications..
+//ADD list of materials on PM admin
+when adding new material code, pre value of material code
+find highest no. Add M
+
+// delete multipleInsert.php  siteground
+ 0 rejected
+ 1 approved
+ 2 pending
+Post_Status=
+0 - deleted
+1 - active
+2 - deactivated
+Post type
+-manpower
+-material
+Post_Approval
+0 rejected
+1 approved
+2 pending
+Quote_Approval
+0 rejected
+1 approved
+2 pending
+test
+ REGISTER COMPANY
+ -oem
+ -manpower
+ -subcon
+ -agency
+
+COMPANY TYPES
+Materials = oem, trading, distributor
+Manpower = subcon, laborSupply, agency
+
+NOTIFICATION TYPES
+COMPANY = new_post, quote_approved
+PURCHASE = new_reg, new_quote
+post_type = material, manpower
+
+-create extra field on quote - discount
+// group materials?? post many 
+
+// search by material lowest offered by history
+ -details Material, Date offered, entered by (purchase/company), price, 
+
+// company user, navbar no showing notification
+// send notification email
+  // get all the emails of the users
+// view no. of post
+
+username: emtnotification@gmail.com
+pw:       Emt@1212, mtarmnkukxitkwxd
+ 
+// paste on email group next line not working
+// downloaded company list - remove contact details, prod/serve column
+
+POSTPONED
+-edit another card which group they belong register.php
+
+//number of post in company side is not accurate
+
+HR
+-qr code to contact details
+-file system for HR
+-manage on admin hr page
+-retrive file
+-------------------
+another table sql for file
+CREATE TABLE `###change to db name###`.`files` ( `File_Id` INT(250) NOT NULL AUTO_INCREMENT , `File_Desc` VARCHAR(50) NOT NULL , `File_Type` VARCHAR(50) NOT NULL , `Emp_Id` INT(250) NOT NULL , PRIMARY KEY (`File_Id`)) ENGINE = InnoDB;
+ALTER TABLE `files` ADD CONS TRAINT `File_Emp_FK` FOREIGN KEY (`Emp_Id`) REFERENCES `employee`(`EMP_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+// updating blank file space
+SELECT * FROM EMPLOYEE WHERE EMP_STATUS=1
+SAMPLE INSERT 
+INSERT INTO `files` (`File_Id`, `File_Desc`, `File_Type`, `Emp_Id`) VALUES (NULL, 'EID01277', 'EID', '1022'), (NULL, 'PP01277', 'PP', '1022')
+/////
+// company stamp and signitures
+ALTER TABLE `company` ADD `Comp_Sig_Name1` VARCHAR(60) NOT NULL AFTER `Comp_Account_Number`, ADD `s1_1` VARCHAR(10) NOT NULL AFTER `Comp_Sig_Name1`, ADD `s1_2` VARCHAR(10) NOT NULL AFTER `s1_1`, ADD `s1_3` VARCHAR(10) NOT NULL AFTER `s1_2`, ADD `Comp_Sig_Name2` VARCHAR(60) NOT NULL AFTER `s1_3`, ADD `s2_1` VARCHAR(10) NOT NULL AFTER `Comp_Sig_Name2`, ADD `s2_2` VARCHAR(10) NOT NULL AFTER `s2_1`, ADD `s2_3` VARCHAR(10) NOT NULL AFTER `s2_2`, ADD `Comp_Sig_Name3` VARCHAR(60) NOT NULL AFTER `s2_3`, ADD `s3_1` VARCHAR(10) NOT NULL AFTER `Comp_Sig_Name3`, ADD `s3_2` VARCHAR(10) NOT NULL AFTER `s3_1`, ADD `s3_3` VARCHAR(10) NOT NULL AFTER `s3_2`;
+ALTER TABLE `company` ADD `Comp_Stamp` VARCHAR(10) NOT NULL AFTER `Comp_Account_Number`;
+
+remove other activities that are assigned
+
+ALTER TABLE `daily_entry` ADD `DE_Date_Insert` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `DE_Pct_Done`;
+
+// add flat types in flat
+// project -> search if there are flat types
+
+// update report page in admin user, project manager user
+// total subcon and manpower dont match 
+upload online rport2
+
+r_report2.php
+
+ALL option in adding type
+all option in adding villa/flat
+ -assigning to assigned_activity duplications
+
+SELECT * from subcontractor WHERE SB_Name like '%thermal%';
+SELECT * FROM daily_entry as de
+LEFT JOIN assigned_activity as as_act on de.Asgd_Act_Id=as_act.Asgd_Act_Id
+LEFT JOIN asgn_mp as mp on mp.DE_Id =de.DE_Id
+LEFT JOIN asgn_subcon as sb on sb.DE_Id=de.DE_Id
+WHERE DE_Date_Entry='2023-08-10' AND sb.`SB_Id`=73;
+SELECT * from flat WHERE Flat_Id='2385';
+
+p00062 prj 11 al furjan - 246
+type id =2 / 
+flat_asgn_to_type /
+
+transfer files online
+SELECT act.Act_Id, act_s.Act_Standard_Emp_Ratio FROM activity_standard as act_s
+LEFT JOIN activity as act on act.Act_Id=act_s.Act_Id
+where Prj_Id='11' AND act_s.Act_Standard_Emp_Ratio>0;
+
+SELECT count(Flat_Id) AS Flat_Nos, Flat_Id ,Flat_Name  FROM `flat` WHERE Flat_Id IN ('2518', '2519', '2520', '2521', '2522', '2523', '2524', '2525', '2526', '2527', '2528', '2529', '2530', '2531', '2532', '2533', '2534', '2535', '2536', '2537', '2538', '2539', '2540', '2541', '2542', '2543', '2544', '2545', '2546', '2547', '2548', '2549', '2550', '2551', '2552', '2553', '2554', '2555', '2556', '2557', '2558', '2559', '2560', '2561', '2562', '2563', '2564', '2565', '2566', '2567', '2568', '2569', '2570', '2571', '2572', '2573', '2574', '2575', '2576', '2577', '2578', '2579', '2580', '2581', '2582', '2583', '2584', '2585', '2586', '2587', '3393', '3394', '3395', '3396', '3397', '3398', '3399', '3400', '3401', '3402', '3403', '3404', '3405', '3406', '3407', '3408', '2588', '2589', '2590', '2591', '2592', '2593', '2594', '2595', '2596', '2597', '2598', '2599', '2600', '2601', '2602', '2603', '2604', '2605', '2606', '2607', '2608', '2609', '2610', '2611', '2612', '2613', '2614', '2615', '26[...]
+cummulated budget computation wrong byAct. or byDept
+update admin view activities
+
+ACOUNT  db
+CREATE TABLE `test_db`.`account` ( `Account_Id` INT(250) NOT NULL AUTO_INCREMENT , `Account_Name` VARCHAR(80) NOT NULL , `Account_Date_Open` DATE NULL , `Account_Date_Expire` DATE NOT NULL , `Account_IBAN` INT NOT NULL , `Account_Type_Id` INT(250) NOT NULL , `Account_Status` BIT(1) NOT NULL , PRIMARY KEY (`Account_Id`)) ENGINE = InnoDB;
+ALTER TABLE `account` ADD CONSTRAINT `FK_Acc_Type` FOREIGN KEY (`Account_Type_Id`) REFERENCES `account_type`(`Account_Type_Id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `account` ADD `Bank_Id` INT(250) NOT NULL AFTER `Account_Type_Id`;
+ALTER TABLE `account` ADD CONSTRAINT `FK_Bank_Id` FOREIGN KEY (`Bank_Id`) REFERENCES `bank`(`Bank_Id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+CREATE TABLE `test_db`.`transaction_type` ( `Transaction_Type_Id` INT(250) NOT NULL AUTO_INCREMENT , `Transaction_Type_Code` VARCHAR(50) NOT NULL , `Transaction_Type_Name` VARCHAR(70) NOT NULL , `Transaction_Sign` VARCHAR(30) NOT NULL , `Transaction_Type_Status` BIT(1) NOT NULL , PRIMARY KEY (`Transaction_Type_Id`)) ENGINE = InnoDB;
+CREATE TABLE `test_db`.`transaction_status` ( `Transaction_Status_Id` INT(250) NOT NULL AUTO_INCREMENT , `Transaction_Status_Descrition` VARCHAR(100) NOT NULL , `Transaction_Status_Status` BIT(1) NOT NULL , PRIMARY KEY (`Transaction_Status_Id`)) ENGINE = InnoDB;
+CREATE TABLE `test_db`.`transaction_category` ( `Transaction_Category_Id` INT(250) NOT NULL AUTO_INCREMENT , `Transaction_Category_Description` VARCHAR(60) NOT NULL , `Prj_Id` INT(250) NULL , `Transaction_Category_Status` BIT(1) NOT NULL , PRIMARY KEY (`Transaction_Category_Id`)) ENGINE = InnoDB;
+
+DD - Direct Debit
+DC - Debit Card 
+CR - Credit 
+CH - Charges 
+ATM - Cash Withdrawal
+CQR - Cheque +
+CQ
+
+front end for generate report
+create add logo in bank
+create new table for transaction type (trasac_type_id,transac_code, transac_name, signage(+/-))
+create new table for transaction category (transac_cat_id,)
+create table for transaction
+
+CREATE TABLE `test_db`.`transaction` ( `Transaction_Id` INT(250) NOT NULL AUTO_INCREMENT , `Transaction_Date` DATE NOT NULL , `Transaction_Type_Id` INT(250) NOT NULL , `Transaction_Cheque_No` INT(15) NOT NULL , `Transaction_Amount` DECIMAL(100,2) NOT NULL , `Account_Id` INT(250) NOT NULL , `Transaction_Status_Id` INT(250) NOT NULL , `Transaction_Remarks` VARCHAR(1000) NOT NULL , `User_Id` INT(250) NOT NULL , `Transaction_Status` BIT(1) NOT NULL , PRIMARY KEY (`Transaction_Id`)) ENGINE = InnoDB;
+ALTER TABLE `transaction` ADD `Prj_Id` INT(250) NOT NULL AFTER `User_Id`, ADD `Transaction_Date_Insert` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `Prj_Id`;
+fk for transaction table
+ALTER TABLE `transaction` ADD `Transaction_Cancel_Status` BIT(1) NOT NULL AFTER `Prj_Id`;
+ALTER TABLE `transaction` ADD `Transaction_Details` VARCHAR(1000) NOT NULL AFTER `Account_Id`;
+ALTER TABLE `transaction_type` CHANGE `Transaction_Sign` `Transaction_Sign` VARCHAR(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+
+CREATE TABLE `test_db`.`chq_code` ( `Chq_Code_Id` INT(250) NOT NULL AUTO_INCREMENT , `Chq_Code` VARCHAR(40) NOT NULL , `Chq_Code_Status` BIT(1) NOT NULL , PRIMARY KEY (`Chq_Code_Id`)) ENGINE = InnoDB;
+
+to think:
+cheque might have contain 2 or more projects
+huge cash withdrawals -
+  1. option to record transaction
+  2. identify spend category
+
+create a portal that will check the cheque status
+To Cheque Statuses:
+
+today
+- create database for company department
+- add department company 
+- edit department company
+- delete department company
+- insert to pages 
+- filter codes
+
+TO DO:
+- create dashboards
+-2nd user view
+ - adding
+-outside check status view
+
+total project
+  dropdown (project, )
+  cash in 
+  cash out 
+  revenue
+this month cash in, cash out 
+  all banks (select banks)
+
+Account Receivable, payable, net profit
+CREATE TABLE `test_db`.`comp_department` ( `Comp_Dept_Id` INT(250) NOT NULL AUTO_INCREMENT , `Comp_Id` INT(250) NOT NULL , `Dept_Id` INT(250) NOT NULL , `Comp_Dept_Status` BIT(1) NOT NULL , PRIMARY KEY (`Comp_Dept_Id`)) ENGINE = InnoDB;
+ALTER TABLE `company` ADD `Comp_Approved_Date` DATE AFTER `Comp_Reg_End_Date`;
+ALTER TABLE `transaction_category` ADD `Transaction_Cat_Code` VARCHAR(40) NOT NULL AFTER `Transaction_Category_Id`;
+ALTER TABLE `transaction` ADD `Transaction_Category_Id` INT(250) NULL AFTER `Transaction_Cancel_Status`;
+ALTER TABLE `transaction` ADD CONSTRAINT `FK_Trans_Cat` FOREIGN KEY (`Transaction_Category_Id`) REFERENCES `transaction_category`(`Transaction_Category_Id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `account` CHANGE `Account_IBAN` `Account_IBAN` VARCHAR(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+CREATE TABLE `test_db`.`expected_expense` ( `Expense_Id` INT(250) NOT NULL , `Exp_Amount` DECIMAL(60,2) NOT NULL , `Exp_Date` DATE NOT NULL , `Transaction_Category_Id` INT(250) NOT NULL , `Exp_Status` BIT(1) NOT NULL ) ENGINE = InnoDB;
+CREATE TABLE `test_db`.`payment_plan` ( `Plan_Id` INT(250) NOT NULL AUTO_INCREMENT , `Transaction_Category_Id` INT(250) NOT NULL , `Frequency` VARCHAR(70) NOT NULL , `Plan_Amount` DECIMAL(60,2) NOT NULL , `Plan_Status` BIT(1) NOT NULL , PRIMARY KEY (`Plan_Id`)) ENGINE = InnoDB;
+ALTER TABLE `expected_expense` CHANGE `Expense_Id` `Expense_Id` INT(250) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Expense_Id`);
+ALTER TABLE `payment_plan` ADD CONSTRAINT `FK_Trans_Cat_Plan` FOREIGN KEY (`Transaction_Category_Id`) REFERENCES `transaction_category`(`Transaction_Category_Id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `payment_plan` ADD `Plan_Desc` VARCHAR(200) NOT NULL AFTER `Plan_Id`;
+ALTER TABLE `payment_plan` ADD `Y_Date` DATE NULL AFTER `Plan_Amount`, ADD `Q1_Date` DATE NULL AFTER `Y_Date`, ADD `Q2_Date` DATE NULL AFTER `Q1_Date`, ADD `Q3_Date` DATE NULL AFTER `Q2_Date`, ADD `Q4_Date` DATE NULL AFTER `Q3_Date`;
+ALTER TABLE `expected_expense` ADD `Exp_Desc` VARCHAR(250) NOT NULL AFTER `Expense_Id`;
+ALTER TABLE `expected_expense` ADD `Plan_Id` INT(250) NULL AFTER `Transaction_Category_Id`;
+ALTER TABLE `expected_expense` ADD CONSTRAINT `FK_Trans_Cat_EE` FOREIGN KEY (`Transaction_Category_Id`) REFERENCES `transaction_category`(`Transaction_Category_Id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `expected_expense` ADD CONSTRAINT `FK_Plan_Id_EE` FOREIGN KEY (`Plan_Id`) REFERENCES `payment_plan`(`Plan_Id`) ON DELETE SET NULL ON UPDATE SET NULL;
+CREATE TABLE `test_db`.`expense_division` ( `Exp_Div_Id` INT(250) NOT NULL AUTO_INCREMENT , `ED_Desc` VARCHAR(200) NOT NULL , `ED_Amount` DECIMAL(60,2) NOT NULL , `Expense_Id` INT(250) NOT NULL , `ED_Paid_Status` BIT(1) NOT NULL , `ED_Status` BIT(1) NOT NULL , PRIMARY KEY (`Exp_Div_Id`)) ENGINE = InnoDB;
+ALTER TABLE `expense_division` ADD `Transaction_Id` INT(250) NULL AFTER `ED_Paid_Status`;
+ALTER TABLE `expected_expense` ADD `Exp_Paid_Status` BIT(1) NULL AFTER `Plan_Id`;
+ALTER TABLE `expected_expense` ADD `Prj_Id` INT(250) NULL AFTER `Plan_Id`;
+ALTER TABLE `expected_expense` ADD CONSTRAINT `FK_Prj_Id_EE` FOREIGN KEY (`Prj_Id`) REFERENCES `project`(`Prj_Id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `expected_expense` ADD `Transaction_Id` INT(250) NULL AFTER `Transaction_Category_Id`;
+ALTER TABLE `expected_expense` ADD CONSTRAINT `FK_Trans_Id` FOREIGN KEY (`Transaction_Id`) REFERENCES `transaction`(`Transaction_Id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+CREATE TABLE `test_db`.`expected_income` ( `Income_Id` INT(250) NOT NULL AUTO_INCREMENT , `Income_Desc` VARCHAR(100) NOT NULL , `Income_Amount` DECIMAL(60,2) NOT NULL , `Income_Date` DATE NOT NULL , `Transaction_Category_Id` INT(250) NOT NULL , `Transaction_Id` INT(250) NOT NULL , `Prj_Id` INT(250) NOT NULL , `Income_Receive_Status` BIT(1) NOT NULL , `Income_Status` BIT(1) NOT NULL , PRIMARY KEY (`Income_Id`)) ENGINE = InnoDB;
+
+shortcut link to account trasaction 
+code per company
+
+separate  paid received
+get database structure. 
+https://sqlbackupandftp.com/download
+
+pattern="^\d*(\.\d{0,2})?$"
+testing sa test
+dashboard 
+setup 
+  bank account  /
+  transaction   /
+  users         /
+financial p 
+  expense        /
+   sub 
+  income
+   sub 
+transaction 
+ multiple cancel /
+
+cheque monitoring 
+report  
+ bank statement 
+ cheque stat
+
+TO DO ESTIMATION: 
+separate adding project 
+ - remove from est_project 
+ - 
+change the radio to dropdown
+
+add button to estimation?
+
+DONE 
+-Avg Apartment BUA
+  add another column -> BUA rate avg bua/total bua
+-ESTIMATION DETAILS
+  adding page -> edit tag No. of Appartment/Villa
+p-code not showing
+add button rename "add new project"
+add client name/mc/consultant shortcut
+
+Company Website using wordpress
+List of systems I made at my current job:
+  - Payslip and time-sheet employee view
+    note: We have outsource ERP. Someone downloads file from the ERP and upload it to my system. 
+          The final salary is still being computed.
+  - Project Monitoring System
+  - Purchase Vendor Registration 
+  - Account: Income and Expense Monitoring
+  - Estimation Project Monitoring Sytem
+programming languages used: php, mysql, bootstrap (SB Admin template)
+current table count: 70
+
+to do: 
+target value 
+some projects have revision (difference total system price )
+another system price ELV system
+
+thursday: 
+dropdown filter replace avg bua -> Avg Aprt BUA
+BUA RATE = total sys price/total bua
+
+friday: 
+main contractor multiple (identify db changes)
+
+saturday:
+replace the values instead of count 
+number of projects and total value (total system price)
+
+monday:

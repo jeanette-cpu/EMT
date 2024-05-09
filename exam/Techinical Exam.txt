@@ -1,0 +1,19 @@
+Techinical Exam - PHP 
+
+1. Create a program that will enter any number to test whether it is odd or even.
+
+2. Perform the following function:
+A script which is passed a number as input and converts into words.
+
+For example:
+Input: "123.45"
+Output: "ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS"
+
+Please test the following and make sure that all items are converted correcty.
+
+1. 100001.01
+2. 1789501.25
+3. 789481.00
+4. 2156175.50
+5. 1111111.11
+6. 10002005.77
